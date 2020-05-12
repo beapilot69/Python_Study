@@ -26,3 +26,5 @@ plt.imshow(img3[:,:,::-1])
 plt.imshow(img4[:,:,::-1])
 plt.imshow(img6[:,:,::-1])
 plt.show()
+
+# git 공부를 위한 각주 추가

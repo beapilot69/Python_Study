@@ -28,3 +28,4 @@ plt.imshow(img6[:,:,::-1])
 plt.show()
 
 # git 공부를 위한 각주 추가
+# 두 번째 각주 추가

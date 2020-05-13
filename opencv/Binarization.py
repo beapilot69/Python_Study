@@ -18,7 +18,7 @@ img_gray = cv2.cvtColor(img_color, cv2.COLOR_BGR2GRAY)
 cv2.imshow('Gray', img_gray)
 cv2.waitKey(0)
 
-while(True): #트랙바를 이용시 결과를 바로 확인할 수 있도록 루프를 추가 트랙바 현재값 가져와서 스레시홀드 임계값으로 사용하도록 수정해준다. (low를 추가 + esc누르면 루프 빠져나오도록해줌)
+while(True): #트랙바 이용시 결과를 바로 확인할 수 있도록 루프를 추가 트랙바 현재값 가져와서 스레시홀드 임계값으로 사용하도록 수정해준다. (low를 추가 + esc누르면 루프 빠져나오도록해줌)
     low = cv2.getTrackbarPos('threshold', 'Binary')
     ret,img_binary = cv2.threshold(img_gray, low, 255, cv2.THRESH_BINARY_INV)   # threshold함수의 첫번째 아규먼트는 이진화할 이미지파일 대상(그레이스케일이어야함), 두번째 쓰레스홀드(이것을 기준으로 결과이미지가 흰색/검정색 결정), 네번째 트레시바이너리인 경우 쓰레시홀드보다 입력이미지 픽셀이 클 때 세번째 아규먼트로 지정된 255를 결과이미지의 픽셀값으로 함. 작다면 0을 픽셀값으로 함.
     cv2.imshow("Binary", img_binary)

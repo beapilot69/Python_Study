@@ -5,13 +5,13 @@ priorities2 = []
 for i in range(n):
     priorities2.append(0)
 
-priorities2[m] = m  #단순 연산만을 위한 리스트
+priorities2[m] = 'target'
 time = 0 
 
 while True:
     if priorities[0] == max(priorities):
         time += 1
-        if priorities2[0] == m:
+        if priorities2[0] == 'target':
             print(time)
             break
         else:

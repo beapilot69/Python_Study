@@ -3,7 +3,7 @@ priorities = list(map(int, input("각 우선순위 차례로 입력: ").split())
 
 priorities2 = []
 for i in range(n):
-    priorities2.append(int(i))
+    priorities2.append(0)
 
 priorities2[m] = m  #단순 연산만을 위한 리스트
 time = 0 

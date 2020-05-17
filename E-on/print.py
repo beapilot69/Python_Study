@@ -5,12 +5,21 @@ priorities2 = []
 for i in range(n):
     priorities2.append(0)
 
+<<<<<<< HEAD
 priorities2[m] = 'target'  #구할 작업 번호의 위치를 priorities_ 리스트의 같은 위치에 1로 설정
 time = 0    #출력시간 초기값 지정
 
 while True:
     if priorities[0] == max(priorities):    #처음에 9라 했다가 가장 큰 우선순위가 무엇인지 모를 수 있으므로 max사용.
         time += 1       #첨부터 가장 큰 우선순위면 바로 출력이므로 출력시간 = +1분
+=======
+priorities2[m] = 'target'
+time = 0 
+
+while True:
+    if priorities[0] == max(priorities):
+        time += 1
+>>>>>>> 44fb9c83f7555344132717ec3850076ce356e69e
         if priorities2[0] == 'target':
             print(time)
             break

@@ -1,23 +1,27 @@
 #변수 초기화
 t_dep = 0           #출발시간
-t_dep2 =0
 station_dep = 0     #출발역
 station_arr = 0     #도착역
 train = 0           #열차 종류
-seat_remain = 0     
-station_dep2 = 0    
-station_arr2 = 0    
-train2 = 0          
-seat_remain2 = 0     
-a = []
-reservated_list = []
-number_of_ind = []
+seat_remain = 0     #잔여석
+t_dep2 =0           #같은 기차정보 찾기위한 출발시간 변수
+station_dep2 = 0    #같은 기차정보 찾기위한 출발역 변수
+station_arr2 = 0    #같은 기차정보 찾기위한 도착역 변수
+train2 = 0          #같은 기차정보 찾기위한 기차종류 변수
+seat_remain2 = 0    #같은 기차정보 찾기위한 잔여석 변수
+a = []              #텍스트 파일 저장 -> 잔여석 연산을 위함
+reservated_list = []            #예매한 열차 정보를 저장
+number_of_ind = []              #예매한 열차 정보의 1차 인덱스를 저장 -> 예매 현황 확인하기 위함
+inttype_of_number_of_ind = 0    #예매한 열차 정보의 1차 인덱스의 값을 정수형변환-> 텍스트파일에서 해당 값에 해당하는 행을 찾기 위함
 
 f = open("C:/project/Study/E-on/TrainList.txt",'r')
 
 def menu1():
-    global f, t_dep, station_dep, station_arr, train, t_dep2, station_dep2, station_arr2, train2, seat_remain2, a, line, myline, reservated_list, number_of_ind
-    t_dep, station_dep, station_arr, train = list(input('*******************\n원하는 출발 시간을 입력하세요(hhmm 형식): ')),input('출발역을 입력하세요: '),input('도착역을 입력하세요: '),input('열차종류를 입력하세요: ')
+    global w, f, t_dep, station_dep, station_arr, train, t_dep2, station_dep2, station_arr2, train2, seat_remain2, a, line, myline, reservated_list, number_of_ind
+    try:
+        t_dep, station_dep, station_arr, train = list(input('*******************\n원하는 출발 시간을 입력하세요(hhmm 형식): ')),input('출발역을 입력하세요: '),input('도착역을 입력하세요: '),input('열차종류를 입력하세요: ')
+    except ValueError:
+        print('다시입력하세요.')
     # 입력한 경로, 기차종류와 일치하는 리스트 중 입력시간과 가장 가까운 정보 출력함.
     while breakpoint:
         line = f.readline()
@@ -43,7 +47,7 @@ def menu1():
     seats = []
     t_tot = 0
     j = 0
-    for j in range(1,20):
+    for j in range(1,21):
         if station_dep == a[j][1] and station_arr == a[j][3] and train == a[j][4]:  #출발역, 도착역, 기차종류 같으면
 
             time_txt2 = a[j][0]                                  #그 열의 시간을 time_txt2 리스트에 저장한다.
@@ -75,16 +79,12 @@ def menu1():
     print(trn[sub_min_ind], end=' ')
     print(seats[sub_min_ind])
 
-    # find_near_time()
+
     #예매 여부 판단 -> 함수로 만들어 주어도 될 거 같다.
     while breakpoint:
         reserve = int(input('예매 하려면 1, 아니면 2를 입력해주세요: '))
         if reserve == 1:    #예매 하면 좌석 수를 -1 해줘야함
-            # print(time_txt[sub_min_ind], end=' ')
-            # print(sts_dep[sub_min_ind], end=' ')
-            # print(' -> ', end=' ')
-            # print(sts_arr[sub_min_ind], end=' ')
-            # print(trn[sub_min_ind], end=' ')
+
             print('*****예매완료*****\n')
             print('해당 열차의 남은 좌석수: ', end=' ')
             print(int(seats[sub_min_ind])-1)
@@ -95,15 +95,16 @@ def menu1():
             station_arr2 = sts_arr[sub_min_ind]
             train2 = trn[sub_min_ind]
             seat_remain2 = int(seats[sub_min_ind])-1
-            for w in range(1,20):
+            for w in range(1,21):
                 if a[w][0] == t_dep2 and a[w][1] == station_dep2 and a[w][3] == station_arr2 and a[w][4] == train2:
                     sr = int(a[w][5])
                     a[w][5] = sr-1  #잔여석 -1 해서 텍스트파일에 적용됨
-                    print('\n')
+                    if a[w][5] == '0':
+                        a[w][5] = '매진'
+                    # print('\n')
                     number_of_ind_ = number_of_ind.append(w)   #출력한 열차정보의 인덱스를 number_of_ind 리스트에 저장.                 
                     reservated_list_ = reservated_list.append(a[w])
 
-            # print(type(number_of_ind))
             break
 
         elif reserve == 2:  #예매 안 할 거면 다시 열차정보 입력부터 해야함
@@ -116,35 +117,55 @@ def menu1():
        
 def menu2():
     global a
+    # for o in range(len(a)):
+    #     oh = int(a[o][5])
+    #     if oh == 0:
+    #         a[o][5] == '매진'
+    #         for q in range(len(a[o])):
+    #             print(a[o][q], end=' ')
+    #     else:
+    #         for q in range(len(a[o])):
+    #             print(a[o][q], end=' ')
+    #     print('\n')
     for o in range(len(a)):
         for q in range(len(a[o])):
-            print(a[o][q], end=' ')
+                print(a[o][q], end=' ')
         print('\n')
-    
 
 def menu3():
-    global number_of_ind, reservated_list, f, a
+    global number_of_ind, reservated_list, f, a, w, t_dep2, station_dep2, station_arr2, train2, inttype_of_number_of_ind
     last_menu = int(input('\n--------------\n1번 : 예매 현황 출력\n2번 : 예매 취소\n3번 : 뒤로가기\n--------------\n번호를 입력하세요: '))
     print('\n')
    
     while True:
-        if last_menu == 1:
-            for g in range(0,len(number_of_ind)):
-                inttype_of_number_of_ind = int(number_of_ind[g])
-                for l in range(0,5):
-                    print(a[inttype_of_number_of_ind][l], end=' ')
-                print('\n')
-            break
-            # for i in range(0,20):
-            #     for o in range(len(a)):
-            #         for q in range(len(a[o])):
-            #         print(a[o][q], end=' ')
-            #     print('\n')
+        try:
+            if last_menu == 1:
+                for g in range(0,len(number_of_ind)):
+                    inttype_of_number_of_ind = int(number_of_ind[g])
+                    for l in range(0,5):
+                        print(a[inttype_of_number_of_ind][l], end=' ')
+                    print('\n')
+                break
 
-        elif last_menu == 2:
-            print('시스템 점검으로 예매 취소가 불가능합니다.')
-        elif last_menu == 3:
-            break
+            elif last_menu == 2:
+                cancle_num = int(input('몇 번째 예매내역을 취소하시겠습니까?: ')) -1  #취소한 인덱스 number_of_ind에서 삭제하고 잔여석 +1 해줘야함
+                h_ind = int(number_of_ind[cancle_num])
+                sr2 = int(a[h_ind][5])
+                a[h_ind][5] = sr2+1                 #잔여석 +1 해서 텍스트파일에 적용됨
+                del number_of_ind[cancle_num]   #취소한 열차정보의 인덱스를 number_of_ind 리스트에서 삭제                 
+                del reservated_list[cancle_num] 
+
+                # number_of_ind 의 각 인덱스가 a의 1차 인덱스임                        
+                break
+            elif last_menu == 3:
+                break
+        except ValueError:
+            print('부적절한 값을 가진 인자를 받았습니다.')
+        except TypeError:
+            print('잘못된 형의 인자가 전달 되었8습니다.')
+        except IndexError:
+            print('인덱스 범위를 초과하여 입력했습니다.')
+
     # f.close()
 
 # while True:
@@ -152,10 +173,6 @@ def menu3():
 while True:
     print('\n***********메뉴***********\n1번 : 열차정보 조회\n2번 : 열차시간 보기\n3번 : 예매 현황 조회/취소\n**************************\n')
     menu = int(input('메뉴를 선택하세요: '))
-    # while breakpoint:
-    #     line = f.readline()
-    #     if not line: break
-    #     myline = a.append(line.split(' '))
     if menu == 1:
         menu1()
     elif menu == 2:
@@ -169,12 +186,3 @@ while True:
         print('\n다시 입력해주세요.\n')
         pass
 f.close()
-
-
-# def seat_remain_():
-#     while breakpoint: 
-#         line = f.readline()
-#         if not line: break  #더이상 읽을 줄이 없으면
-#         myline = a.append(line.split(' '))
-#     for i in range(1, len(a)):      #잔여 좌석수 정수로 출력
-#                 print(int(a[i][5]))

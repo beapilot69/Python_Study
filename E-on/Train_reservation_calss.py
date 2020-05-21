@@ -27,7 +27,6 @@ class train_reservation:
             line = f.readline()
             if not line: break
             myline = a.append(line.split(' '))
-        
         t_res = 0               # 입력 시간을 총 분으로 변환
         if t_dep[0] == '0':     # 10의 자리가 0일때
             hour_res = int(t_dep[1])
@@ -37,7 +36,6 @@ class train_reservation:
             hour_res = int(t_dep[0]+t_dep[1])
             minute_res = int(t_dep[2]+t_dep[3])
             t_res = hour_res*60 + minute_res           
-        
         time_txt2 = [] #1행1열짜리임. 그 순간의 시간만 저장
         time_txt = []
         sub_t_list = []
@@ -49,14 +47,12 @@ class train_reservation:
         j = 0
         for j in range(1,21):
             if station_dep == a[j][1] and station_arr == a[j][3] and train == a[j][4]:  #출발역, 도착역, 기차종류 같으면
-
                 time_txt2 = a[j][0]                                     #그 열의 시간을 time_txt2 리스트에 저장한다.
                 time_txt_ = time_txt.append(a[j][0])
                 sts_dep_ = sts_dep.append(a[j][1])
                 sts_arr_ = sts_arr.append(a[j][3])
                 trn_ = trn.append(a[j][4])
                 seats_ = seats.append(a[j][5])
-                
                 if time_txt2[0] == '0':                                 #만약 time_txt2 리스트의 첫번째 값이 0이면 즉,한자리 수 시간이면
                     hour_txt = int(time_txt2[1])                        #입력한 시간의 두번째 자리 즉 1의 자리가 hour_txt이다.
                     minute_txt = int(time_txt2[3] + time_txt2[4])       #입력한 시간의 3,4번째 자리 즉 분이 minute_txt이다.
@@ -79,8 +75,6 @@ class train_reservation:
         print(trn[sub_min_ind], end=' ')
         print(seats[sub_min_ind])
 
-
-        #예매 여부 판단 -> 함수로 만들어 주어도 될 거 같다.
         while breakpoint:
             reserve = int(input('예매 하려면 1, 아니면 2를 입력해주세요: '))
             if reserve == 1:    #예매 하면 좌석 수를 -1 해줘야함
@@ -99,8 +93,7 @@ class train_reservation:
                         a[w][5] = sr-1  #잔여석 -1 해서 텍스트파일에 적용
                         if seat_remain2 == 0:
                             a[w][5] = '매진'
-                        # print('\n')
-                        number_of_ind_ = number_of_ind.append(w)   #출력한 열차정보의 인덱스를 number_of_ind 리스트에 저장.                 
+                        number_of_ind_ = number_of_ind.append(w)   #출력한 열차정보의 인덱스를 number_of_ind 리스트에 저장, number_of_ind 의 각 인덱스가 a의 1차 인덱스           
                         reservated_list_ = reservated_list.append(a[w])
                 if seat_remain2 == 0:
                     print('<<매진되었습니다>>')
@@ -123,7 +116,6 @@ class train_reservation:
         global number_of_ind, reservated_list, f, a, w, t_dep2, station_dep2, station_arr2, train2, inttype_of_number_of_ind
         last_menu = int(input('\n--------------\n1번 : 예매 현황 출력\n2번 : 예매 취소\n3번 : 뒤로가기\n--------------\n번호를 입력하세요: '))
         print('\n')
-    
         while True:
             try:
                 if last_menu == 1:
@@ -133,12 +125,9 @@ class train_reservation:
                             print(a[inttype_of_number_of_ind][l], end=' ')
                         print('\n')
                     break
-
                 elif last_menu == 2:
                     cancle_num = int(input('몇 번째 예매내역을 취소하시겠습니까?: ')) -1  #취소한 인덱스 number_of_ind에서 삭제하고 잔여석 +1
-
-                    for i in range(21):
-                        
+                    for i in range(21):  
                         h_ind = number_of_ind[cancle_num]
                         if i == int(h_ind):
                             tp = type(a[i][5])
@@ -153,8 +142,6 @@ class train_reservation:
                                 a[h_ind][5] = sr2+1
                                 del number_of_ind[cancle_num]
                                 del reservated_list[cancle_num]
-
-                    # number_of_ind 의 각 인덱스가 a의 1차 인덱스                        
                     break
                 elif last_menu == 3:
                     break
@@ -164,9 +151,6 @@ class train_reservation:
                 print('잘못된 형의 인자가 전달 되었습니다.')
             except IndexError:
                 print('인덱스 범위를 초과하여 입력했습니다.')
-
-        # f.close()
-
 while True:
     try:
         print('\n***********메뉴***********\n1번 : 열차정보 조회\n2번 : 열차시간 보기\n3번 : 예매 현황 조회/취소\n**************************\n')
@@ -192,5 +176,4 @@ while True:
         print('잘못된 형의 인자가 전달 되었습니다.')
     except IndexError:
         print('인덱스 범위를 초과하여 입력했습니다.')
-
 f.close()

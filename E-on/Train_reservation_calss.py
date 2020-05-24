@@ -15,6 +15,10 @@ number_of_ind = []              #예매한 열차 정보의 1차 인덱스를 �
 inttype_of_number_of_ind = 0    #예매한 열차 정보의 1차 인덱스의 값을 정수형변환-> 텍스트파일에서 해당 값에 해당하는 행을 찾기 위함
 
 f = open("C:/project/Study/E-on/TrainList.txt",'r')
+while breakpoint:
+    line = f.readline()
+    if not line: break
+    myline = a.append(line.split(' '))
 class train_reservation:
     def menu1(self):
         global w, f, t_dep, station_dep, station_arr, train, t_dep2, station_dep2, station_arr2, train2, seat_remain2, a, line, myline, reservated_list, number_of_ind
@@ -23,10 +27,7 @@ class train_reservation:
         except ValueError:
             print('다시입력하세요.')
         # 입력한 경로, 기차종류와 일치하는 리스트 중 입력시간과 가장 가까운 정보 출력함.
-        while breakpoint:
-            line = f.readline()
-            if not line: break
-            myline = a.append(line.split(' '))
+
         t_res = 0               # 입력 시간을 총 분으로 변환
         if t_dep[0] == '0':     # 10의 자리가 0일때
             hour_res = int(t_dep[1])

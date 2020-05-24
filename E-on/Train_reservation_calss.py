@@ -15,7 +15,7 @@ number_of_ind = []              #예매한 열차 정보의 1차 인덱스를 �
 inttype_of_number_of_ind = 0    #예매한 열차 정보의 1차 인덱스의 값을 정수형변환-> 텍스트파일에서 해당 값에 해당하는 행을 찾기 위함
 
 f = open("C:/project/Study/E-on/TrainList.txt",'r')
-while breakpoint:
+while True:
     line = f.readline()
     if not line: break
     myline = a.append(line.split(' '))

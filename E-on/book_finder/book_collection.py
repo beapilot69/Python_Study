@@ -29,7 +29,7 @@ class menu_collection:
         print("[도서 목록]")
         print(booklist)
     def save_booklist(self,booklist):
-        new_booklist = ' '.join(booklist)
+        new_booklist = ''.join(booklist)
         this_folder = os.path.dirname(os.path.abspath(__file__))
         my_file = os.path.join(this_folder,'input.txt')
         wr = open(my_file,'w')

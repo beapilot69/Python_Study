@@ -32,7 +32,7 @@ class menu_collection:
         new_booklist = ''.join(booklist)
         this_folder = os.path.dirname(os.path.abspath(__file__))
         my_file = os.path.join(this_folder,'input.txt')
-        wr = open(my_file,'w')
-        wr.write(new_booklist)
-        wr.close
+        fwrite = open(my_file,'w')
+        fwrite.write(new_booklist)
+        fwrite.close
         print("<<저장되었습니다>>")

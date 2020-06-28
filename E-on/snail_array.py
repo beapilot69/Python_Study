@@ -30,7 +30,7 @@ def snail(number, count, n, o, array, dan):
         o = o -1                            #단 증가에 따른 반복횟수 감소
         if n == -2 or n == -1:
             break
-        snail(number,count, n, o, array, dan) #<수정>재귀함수 쓰임 명확히 할 것
+        snail(number,count, n, o, array, dan)
 snail(number,count, n, o, array, dan)
 
 for f in array: #<참고> Asterisk(*)의 활용

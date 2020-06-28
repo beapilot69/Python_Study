@@ -14,15 +14,15 @@ class menu_collection:
     def edit_book(self,booklist):
         for i in range(len(booklist)):
             print(i,'.', booklist[i])
-        num = int(input("수정할 도서 번호를 입력하세요 :"))
-        booklist[num] = str(input("[도서정보 수정]제목 저자 발행년도 출판사 카테고리 순으로 입력하세요.\n:"))
+        list_num = int(input("수정할 도서 번호를 입력하세요 :"))
+        booklist[list_num] = str(input("[도서정보 수정]제목 저자 발행년도 출판사 카테고리 순으로 입력하세요.\n:"))
         print("<<수정되었습니다>>")
         return booklist
     def delete_book(self,booklist):
         for i in range(len(booklist)):
             print(i,'.', booklist[i])
-        num = int(input("삭제할 도서 번호를 입력하세요 :"))
-        booklist.pop(num)
+        list_num = int(input("삭제할 도서 번호를 입력하세요 :"))
+        booklist.pop(list_num)
         print("<<삭제되었습니다>>")
         return booklist
     def printing_booklist(self,booklist):

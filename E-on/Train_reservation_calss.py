@@ -15,13 +15,14 @@ number_of_ind = []              #예매한 열차 정보의 1차 인덱스를 �
 inttype_of_number_of_ind = 0    #예매한 열차 정보의 1차 인덱스의 값을 정수형변환-> 텍스트파일에서 해당 값에 해당하는 행을 찾기 위함
 
 f = open("C:/project/Study/E-on/TrainList.txt",'r')
-while True:
-    line = f.readline()
-    if not line: break
-    myline = a.append(line.split(' '))
+
 class train_reservation:
     def menu1(self):
         global w, f, t_dep, station_dep, station_arr, train, t_dep2, station_dep2, station_arr2, train2, seat_remain2, a, line, myline, reservated_list, number_of_ind
+        while True:
+            line = f.readline()
+            if not line: break
+            myline = a.append(line.split(' '))
         try:
             t_dep, station_dep, station_arr, train = list(input('*******************\n원하는 출발 시간을 입력하세요(hhmm 형식): ')),input('출발역을 입력하세요: '),input('도착역을 입력하세요: '),input('열차종류를 입력하세요: ')
         except ValueError:
@@ -154,7 +155,7 @@ class train_reservation:
                 print('인덱스 범위를 초과하여 입력했습니다.')
 while True:
     try:
-        print('\n***********메뉴***********\n1번 : 열차정보 조회\n2번 : 열차시간 보기\n3번 : 예매 현황 조회/취소\n**************************\n')
+        print('\n***********메뉴***********\n1번 : 열차정보 조회\n2번 : 열차시간 보기\n3번 : 예매 현황 조회/취소\n4번 : 프로그램 종료\n**************************\n')
         menu = int(input('메뉴를 선택하세요: '))
         if menu == 1:
             menu_1 = train_reservation()

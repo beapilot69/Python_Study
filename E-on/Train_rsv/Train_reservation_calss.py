@@ -123,6 +123,7 @@ class train_reservation:
                 if last_menu == 1:
                     for g in range(0,len(number_of_ind)):
                         inttype_of_number_of_ind = int(number_of_ind[g])
+                        print(g+1,end=' ')
                         for l in range(0,5):
                             print(a[inttype_of_number_of_ind][l], end=' ')
                         print('\n')

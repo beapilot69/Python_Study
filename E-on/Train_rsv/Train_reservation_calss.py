@@ -108,7 +108,7 @@ class train_reservation:
                 pass
         
     def menu2(self):
-        global a
+        global a, myline
         while True:
             line = f.readline()
             if not line: break

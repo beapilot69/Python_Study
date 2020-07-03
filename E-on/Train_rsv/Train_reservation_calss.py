@@ -109,6 +109,10 @@ class train_reservation:
         
     def menu2(self):
         global a
+        while True:
+            line = f.readline()
+            if not line: break
+            myline = a.append(line.split(' '))        
         for o in range(len(a)):
             for q in range(len(a[o])):
                     print(a[o][q], end=' ')

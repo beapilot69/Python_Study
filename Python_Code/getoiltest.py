@@ -1,3 +1,7 @@
+###
+### 졸업설계에 사용할 크롤링 프로그램
+### 실시간 유가 환율 정보 수집
+###
 from bs4 import BeautifulSoup
 import requests, re, os
 #import urllib.request
